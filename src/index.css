@@ -1,0 +1,182 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* EliteStack Technologies Design System */
+
+@layer base {
+  :root {
+    /* Brand Colors - EliteStack Technologies */
+    --royal-blue: 225 87% 35%; /* #1E3A8A - trust & professionalism */
+    --silver-gray: 211 20% 69%; /* #9CA3AF - premium & modern */
+    --cyan-accent: 199 89% 48%; /* #06B6D4 - innovation & freshness */
+    --light-gray: 214 32% 91%; /* #F3F4F6 - subtle backgrounds */
+    
+    /* Core System Colors */
+    --background: 0 0% 100%;
+    --foreground: 225 87% 15%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 225 87% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 225 87% 15%;
+
+    --primary: 225 87% 35%; /* Royal Blue */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 211 20% 69%; /* Silver Gray */
+    --secondary-foreground: 225 87% 15%;
+
+    --muted: 214 32% 91%; /* Light Gray */
+    --muted-foreground: 211 20% 45%;
+
+    --accent: 199 89% 48%; /* Cyan */
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 214 32% 85%;
+    --input: 214 32% 91%;
+    --ring: 225 87% 35%;
+
+    /* Design System Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(var(--royal-blue)), hsl(var(--cyan-accent)));
+    --gradient-subtle: linear-gradient(180deg, hsl(var(--background)), hsl(var(--muted)));
+    --gradient-card: linear-gradient(145deg, hsl(var(--background) / 0.9), hsl(var(--muted) / 0.3));
+    
+    /* Glassmorphism Effects */
+    --glass-bg: hsl(var(--background) / 0.1);
+    --glass-border: hsl(var(--border) / 0.2);
+    --glass-shadow: 0 8px 32px hsl(var(--foreground) / 0.1);
+    
+    /* Shadows */
+    --shadow-elegant: 0 10px 30px -10px hsl(var(--royal-blue) / 0.3);
+    --shadow-soft: 0 4px 20px hsl(var(--foreground) / 0.1);
+    --shadow-glow: 0 0 40px hsl(var(--cyan-accent) / 0.4);
+    
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+    --radius: 1rem;
+
+  }
+
+  .dark {
+    --royal-blue: 225 87% 45%;
+    --silver-gray: 211 20% 60%;
+    --cyan-accent: 199 89% 58%;
+    --light-gray: 225 15% 15%;
+    
+    --background: 225 15% 8%;
+    --foreground: 0 0% 95%;
+
+    --card: 225 15% 10%;
+    --card-foreground: 0 0% 95%;
+
+    --popover: 225 15% 10%;
+    --popover-foreground: 0 0% 95%;
+
+    --primary: 225 87% 45%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 225 15% 15%;
+    --secondary-foreground: 0 0% 85%;
+
+    --muted: 225 15% 15%;
+    --muted-foreground: 211 20% 60%;
+
+    --accent: 199 89% 58%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 225 15% 20%;
+    --input: 225 15% 20%;
+    --ring: 225 87% 45%;
+
+    /* Dark Mode Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(var(--royal-blue)), hsl(var(--cyan-accent)));
+    --gradient-subtle: linear-gradient(180deg, hsl(var(--background)), hsl(var(--muted)));
+    --gradient-card: linear-gradient(145deg, hsl(var(--card) / 0.9), hsl(var(--muted) / 0.3));
+    
+    --glass-bg: hsl(var(--card) / 0.1);
+    --glass-border: hsl(var(--border) / 0.2);
+    --glass-shadow: 0 8px 32px hsl(var(--foreground) / 0.1);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  /* Glass morphism utilities */
+  .glass {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+  }
+  
+  /* Hero gradient background */
+  .gradient-hero {
+    background: var(--gradient-hero);
+  }
+  
+  .gradient-subtle {
+    background: var(--gradient-subtle);
+  }
+  
+  .gradient-card {
+    background: var(--gradient-card);
+  }
+  
+  /* Custom shadows */
+  .shadow-elegant {
+    box-shadow: var(--shadow-elegant);
+  }
+  
+  .shadow-soft {
+    box-shadow: var(--shadow-soft);
+  }
+  
+  .shadow-glow {
+    box-shadow: var(--shadow-glow);
+  }
+  
+  /* Smooth transitions */
+  .transition-smooth {
+    transition: var(--transition-smooth);
+  }
+  
+  .transition-bounce {
+    transition: var(--transition-bounce);
+  }
+  
+  /* Section padding */
+  .section-padding {
+    @apply py-16 lg:py-24;
+  }
+  
+  /* Container */
+  .container-custom {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+}
