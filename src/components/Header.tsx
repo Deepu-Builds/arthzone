@@ -38,10 +38,7 @@ const Header = () => {
           <div className="flex items-center justify-center space-x-2">
            
             <div className='flex justify-center items-center flex-col'>
-              <img src={logo} className="h-[70px]"/>
-              <p className="text-[16px] text-blue-300 -mt-1">
-                Technologies
-              </p>
+              <img src={logo} className="h-[70px] drop-shadow"/>
             </div>
           </div>
 

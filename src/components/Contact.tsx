@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
+import emailjs from "emailjs-com";
 import { useToast } from '@/hooks/use-toast';
 import { 
   Mail, 
@@ -30,21 +31,53 @@ const Contact = () => {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
 
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1000));
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+  setIsSubmitting(true);
+
+  try {
+    // 1️⃣ Send message to company
+    await emailjs.send(
+      "service_cs7sncb",
+      "template_wxxquc6",
+      {
+        from_name: formData.name,
+        from_email: formData.email,
+        company: formData.company,
+        message: formData.message,
+      },
+      "D8wBEAg2uaK3eEEIN"
+    );
+
+    // 2️⃣ Send auto-reply to user
+    await emailjs.send(
+      "service_cs7sncb",
+      "template_4djvvqu", // Create this template in EmailJS
+      {
+        to_name: formData.name,
+        to_email: formData.email,
+      },
+      "D8wBEAg2uaK3eEEIN"
+    );
 
     toast({
       title: "Message Sent Successfully!",
-      description: "We'll get back to you within 24 hours.",
+      description: "We've also sent you a confirmation email.",
     });
 
-    setFormData({ name: '', email: '', company: '', message: '' });
+    setFormData({ name: "", email: "", company: "", message: "" });
+  } catch (error) {
+    console.error("EmailJS Error:", error);
+    toast({
+      title: "Failed to send message",
+      description: "Please try again later.",
+      variant: "destructive",
+    });
+  } finally {
     setIsSubmitting(false);
-  };
+  }
+};
 
   const contactInfo = [
     {
@@ -63,7 +96,7 @@ const Contact = () => {
       icon: <MessageCircle className="h-6 w-6" />,
       title: 'WhatsApp',
       value: 'Quick Chat',
-      action: 'https://wa.me/919876543210'
+      action: 'https://wa.me/918839354160'
     },
     {
       icon: <Linkedin className="h-6 w-6" />,
@@ -252,7 +285,7 @@ const Contact = () => {
                   <div>
                     <h4 className="font-semibold text-foreground">Our Location</h4>
                     <p className="text-muted-foreground text-sm">
-                      Based in India, serving clients worldwide
+                      Based in Ratlam, India. serving clients worldwide
                     </p>
                   </div>
                 </div>

@@ -1,5 +1,5 @@
 import { Linkedin, Mail, Github, ExternalLink } from 'lucide-react';
-
+import logo from "/logo.png"
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
@@ -53,12 +53,10 @@ const Footer = () => {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 py-16">
           {/* Company Info */}
           <div className="lg:col-span-1">
-            <div className="flex items-center space-x-2 mb-6">
-              <div className="w-10 h-10 bg-gradient-hero rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-xl">E</span>
-              </div>
-              <div>
-                <h3 className="font-bold text-lg text-foreground">Arthzone</h3>
+            <div className="flex items-center  space-x-2 mb-6">
+            
+              <div className='flex justify-center items-center flex-col'> 
+               <img src={logo} className="h-[70px] drop-shadow"/>
                 <p className="text-xs text-muted-foreground -mt-1">Technologies</p>
               </div>
             </div>
@@ -124,7 +122,7 @@ const Footer = () => {
                   href="mailto:hello@elitestack.tech"
                   className="text-muted-foreground hover:text-primary transition-colors duration-300"
                 >
-                  hello@elitestack.tech
+                  arthzonetech@gmail.com
                 </a>
               </div>
               <div>
@@ -133,13 +131,13 @@ const Footer = () => {
                   href="tel:+919876543210"
                   className="text-muted-foreground hover:text-primary transition-colors duration-300"
                 >
-                  +91 98765 43210
+                  +91 8839354160
                 </a>
               </div>
               <div>
                 <p className="text-sm font-medium text-foreground mb-1">Location</p>
                 <p className="text-muted-foreground">
-                  India (Serving Worldwide)
+                  Ratlam, India 
                 </p>
               </div>
             </div>
