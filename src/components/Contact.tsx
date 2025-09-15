@@ -51,7 +51,7 @@ const Contact = () => {
       icon: <Mail className="h-6 w-6" />,
       title: 'Email Us',
       value: 'arthzonetech@gmail.com',
-      action: 'mailto:hello@elitestack.tech'
+      action: 'mailto:arthzonetech@gmail.com'
     },
     {
       icon: <Phone className="h-6 w-6" />,
@@ -69,7 +69,7 @@ const Contact = () => {
       icon: <Linkedin className="h-6 w-6" />,
       title: 'LinkedIn',
       value: 'Connect with us',
-      action: 'https://linkedin.com/company/elitestack-tech'
+      action: 'https://linkedin.com/company/arthzonetech'
     }
   ];
 
