@@ -50,13 +50,13 @@ const Contact = () => {
     {
       icon: <Mail className="h-6 w-6" />,
       title: 'Email Us',
-      value: 'hello@elitestack.tech',
+      value: 'arthzonetech@gmail.com',
       action: 'mailto:hello@elitestack.tech'
     },
     {
       icon: <Phone className="h-6 w-6" />,
       title: 'Call Us',
-      value: '+91 98765 43210',
+      value: '+91 98765 43210, 8839354160',
       action: 'tel:+919876543210'
     },
     {
