@@ -42,8 +42,8 @@ const Header = () => {
           <nav className="hidden lg:flex items-center   space-x-8">
             <button
               onClick={() => scrollToSection("hero")}
-              className="relative text-foreground text-blue-400 hover:text-blue-300 hover:scale-105 transition-smooth font-medium
-             after:content-[''] after:absolute after:right-0 after:bottom-0 after:h-[2px] after:w-full after:bg-blue-400
+              className="relative text-foreground text-[#00aaff] hover:text-[#00ccff] hover:scale-105 transition-smooth font-medium
+             after:content-[''] after:absolute after:right-0 after:bottom-0 after:h-[2px] after:w-full after:bg-[#00ccff]
              after:scale-x-0 after:origin-right hover:after:scale-x-100 after:transition-transform after:duration-300
              hover:after:origin-left"
             >
@@ -52,8 +52,8 @@ const Header = () => {
 
             <button
               onClick={() => scrollToSection("about")}
-              className="relative text-foreground text-blue-400 hover:text-blue-300 hover:scale-105 transition-smooth font-medium
-             after:content-[''] after:absolute after:right-0 after:bottom-0 after:h-[2px] after:w-full after:bg-blue-400
+              className="relative text-foreground text-[#00aaff] hover:text-[#00ccff] hover:scale-105 transition-smooth font-medium
+             after:content-[''] after:absolute after:right-0 after:bottom-0 after:h-[2px] after:w-full after:bg-[#00ccff]
              after:scale-x-0 after:origin-right hover:after:scale-x-100 after:transition-transform after:duration-300
              hover:after:origin-left"
             >
@@ -61,8 +61,8 @@ const Header = () => {
             </button>
             <button
               onClick={() => scrollToSection("services")}
-              className="relative text-foreground text-blue-400 hover:text-blue-300 hover:scale-105 transition-smooth font-medium
-             after:content-[''] after:absolute after:right-0 after:bottom-0 after:h-[2px] after:w-full after:bg-blue-400
+              className="relative text-foreground text-[#00aaff] hover:text-[#00ccff] hover:scale-105 transition-smooth font-medium
+             after:content-[''] after:absolute after:right-0 after:bottom-0 after:h-[2px] after:w-full after:bg-[#00ccff]
              after:scale-x-0 after:origin-right hover:after:scale-x-100 after:transition-transform after:duration-300
              hover:after:origin-left"
             >
@@ -70,8 +70,8 @@ const Header = () => {
             </button>
             <button
               onClick={() => scrollToSection("portfolio")}
-              className="relative text-foreground text-blue-400 hover:text-blue-300 hover:scale-105 transition-smooth font-medium
-             after:content-[''] after:absolute after:right-0 after:bottom-0 after:h-[2px] after:w-full after:bg-blue-400
+              className="relative text-foreground text-[#00aaff] hover:text-[#00ccff] hover:scale-105 transition-smooth font-medium
+             after:content-[''] after:absolute after:right-0 after:bottom-0 after:h-[2px] after:w-full after:bg-[#00ccff]
              after:scale-x-0 after:origin-right hover:after:scale-x-100 after:transition-transform after:duration-300
              hover:after:origin-left"
             >
@@ -79,8 +79,8 @@ const Header = () => {
             </button>
             {/* <button
               onClick={() => scrollToSection('team')}
-              className="relative text-foreground text-blue-400 hover:text-blue-300 hover:scale-105 transition-smooth font-medium
-             after:content-[''] after:absolute after:right-0 after:bottom-0 after:h-[2px] after:w-full after:bg-blue-400
+              className="relative text-foreground text-[#00aaff] hover:text-blue-300 hover:scale-105 transition-smooth font-medium
+             after:content-[''] after:absolute after:right-0 after:bottom-0 after:h-[2px] after:w-full after:bg-[#00ccff]
              after:scale-x-0 after:origin-right hover:after:scale-x-100 after:transition-transform after:duration-300
              hover:after:origin-left"
             >

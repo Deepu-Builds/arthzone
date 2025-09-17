@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://arthzone.vercel.app/sitemap.xml
