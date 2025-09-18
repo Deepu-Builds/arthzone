@@ -1,109 +1,97 @@
-import { useState } from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
-import { Label } from '@/components/ui/label';
+import { useState } from "react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
 import emailjs from "emailjs-com";
-import { useToast } from '@/hooks/use-toast';
-import { 
-  Mail, 
-  Phone, 
-  MapPin, 
-  MessageCircle, 
-  Linkedin, 
+import { useToast } from "@/hooks/use-toast";
+import {
+  Mail,
+  Phone,
+  MapPin,
+  MessageCircle,
+  Linkedin,
   Send,
-  CheckCircle
-} from 'lucide-react';
+  CheckCircle,
+} from "lucide-react";
 
 const Contact = () => {
   const { toast } = useToast();
+  const API_URL = import.meta.env.VITE_API_URL;
+
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    company: '',
-    message: ''
+    name: "",
+    email: "",
+    phone: "",
+    company: "",
+    message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
 
-const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault();
-  setIsSubmitting(true);
+    try {
+      const response = await fetch(`${API_URL}/api/contact`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
 
-  try {
-    // 1️⃣ Send message to company
-    await emailjs.send(
-      "service_cs7sncb",
-      "template_wxxquc6",
-      {
-        from_name: formData.name,
-        from_email: formData.email,
-        company: formData.company,
-        message: formData.message,
-      },
-      "D8wBEAg2uaK3eEEIN"
-    );
+      if (!response.ok) throw new Error("Failed to send message");
 
-    // 2️⃣ Send auto-reply to user
-    await emailjs.send(
-      "service_cs7sncb",
-      "template_4djvvqu", // Create this template in EmailJS
-      {
-        to_name: formData.name,
-        to_email: formData.email,
-      },
-      "D8wBEAg2uaK3eEEIN"
-    );
+      toast({
+        title: "Message Sent Successfully!",
+        description: "We've also sent you a confirmation email.",
+      });
 
-    toast({
-      title: "Message Sent Successfully!",
-      description: "We've also sent you a confirmation email.",
-    });
-
-    setFormData({ name: "", email: "", company: "", message: "" });
-  } catch (error) {
-    console.error("EmailJS Error:", error);
-    toast({
-      title: "Failed to send message",
-      description: "Please try again later.",
-      variant: "destructive",
-    });
-  } finally {
-    setIsSubmitting(false);
-  }
-};
+      setFormData({ name: "", email: "", company: "", message: "", phone: "" });
+    } catch (error) {
+      console.error("Contact API Error:", error);
+      toast({
+        title: "Failed to send message",
+        description: "Please try again later.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   const contactInfo = [
     {
       icon: <Mail className="h-6 w-6" />,
-      title: 'Email Us',
-      value: 'arthzonetech@gmail.com',
-      action: 'mailto:arthzonetech@gmail.com'
+      title: "Email Us",
+      value: "arthzonetech@gmail.com",
+      action: "mailto:arthzonetech@gmail.com",
     },
     {
       icon: <Phone className="h-6 w-6" />,
-      title: 'Call Us',
-      value: '+91 98765 43210, 8839354160',
-      action: 'tel:+919876543210'
+      title: "Call Us",
+      value: "+91 98765 43210, 8839354160",
+      action: "tel:+919876543210",
     },
     {
       icon: <MessageCircle className="h-6 w-6" />,
-      title: 'WhatsApp',
-      value: 'Quick Chat',
-      action: 'https://wa.me/918839354160'
+      title: "WhatsApp",
+      value: "Quick Chat",
+      action: "https://wa.me/918839354160",
     },
     {
       icon: <Linkedin className="h-6 w-6" />,
-      title: 'LinkedIn',
-      value: 'Connect with us',
-      action: 'https://linkedin.com/company/arthzonetech'
-    }
+      title: "LinkedIn",
+      value: "Connect with us",
+      action: "https://linkedin.com/company/arthzonetech",
+    },
   ];
 
   return (
@@ -112,14 +100,14 @@ const handleSubmit = async (e: React.FormEvent) => {
         {/* Header */}
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6">
-            Let's{' '}
+            Let's{" "}
             <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
               Connect
             </span>
           </h2>
           <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
-            Ready to transform your ideas into reality? We'd love to hear about your project 
-            and discuss how we can help you achieve your goals.
+            Ready to transform your ideas into reality? We'd love to hear about
+            your project and discuss how we can help you achieve your goals.
           </p>
         </div>
 
@@ -136,7 +124,10 @@ const handleSubmit = async (e: React.FormEvent) => {
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <Label htmlFor="name" className="text-foreground font-medium">
+                    <Label
+                      htmlFor="name"
+                      className="text-foreground font-medium"
+                    >
                       Full Name *
                     </Label>
                     <Input
@@ -150,7 +141,10 @@ const handleSubmit = async (e: React.FormEvent) => {
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="email" className="text-foreground font-medium">
+                    <Label
+                      htmlFor="email"
+                      className="text-foreground font-medium"
+                    >
                       Email Address *
                     </Label>
                     <Input
@@ -166,22 +160,50 @@ const handleSubmit = async (e: React.FormEvent) => {
                   </div>
                 </div>
 
-                <div className="space-y-2">
-                  <Label htmlFor="company" className="text-foreground font-medium">
-                    Company (Optional)
-                  </Label>
-                  <Input
-                    id="company"
-                    name="company"
-                    value={formData.company}
-                    onChange={handleInputChange}
-                    className="border-border/50 focus:border-primary transition-colors"
-                    placeholder="Your company name"
-                  />
+                <div className="grid md:grid-cols-2 gap-4">
+                  {/* here i want to input the user number as well with validation */}
+                  <div className="space-y-2">
+                    <Label
+                      htmlFor="phone"
+                      className="text-foreground font-medium"
+                    >
+                      Phone Number *
+                    </Label>
+                    <Input
+                      id="phone"
+                      name="phone"
+                      type="tel"
+                      pattern="[0-9]{10}"
+                      value={formData.phone}
+                      onChange={handleInputChange}
+                      className="border-border/50 focus:border-primary transition-colors"
+                      placeholder="Your phone number"
+                      required
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label
+                      htmlFor="company"
+                      className="text-foreground font-medium"
+                    >
+                      Company (Optional)
+                    </Label>
+                    <Input
+                      id="company"
+                      name="company"
+                      value={formData.company}
+                      onChange={handleInputChange}
+                      className="border-border/50 focus:border-primary transition-colors"
+                      placeholder="Your company name"
+                    />
+                  </div>
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="message" className="text-foreground font-medium">
+                  <Label
+                    htmlFor="message"
+                    className="text-foreground font-medium"
+                  >
                     Project Details *
                   </Label>
                   <Textarea
@@ -228,17 +250,28 @@ const handleSubmit = async (e: React.FormEvent) => {
               </CardHeader>
               <CardContent className="space-y-6">
                 {contactInfo.map((info, index) => (
-                  <div key={info.title} className="flex items-center space-x-4 group">
+                  <div
+                    key={info.title}
+                    className="flex items-center space-x-4 group"
+                  >
                     <div className="p-3 bg-gradient-hero rounded-xl text-white group-hover:scale-110 transition-transform duration-300">
                       {info.icon}
                     </div>
                     <div className="flex-1">
-                      <h4 className="font-semibold text-foreground">{info.title}</h4>
-                      <a 
+                      <h4 className="font-semibold text-foreground">
+                        {info.title}
+                      </h4>
+                      <a
                         href={info.action}
                         className="text-muted-foreground hover:text-primary transition-colors"
-                        target={info.action.startsWith('http') ? '_blank' : undefined}
-                        rel={info.action.startsWith('http') ? 'noopener noreferrer' : undefined}
+                        target={
+                          info.action.startsWith("http") ? "_blank" : undefined
+                        }
+                        rel={
+                          info.action.startsWith("http")
+                            ? "noopener noreferrer"
+                            : undefined
+                        }
                       >
                         {info.value}
                       </a>
@@ -254,7 +287,9 @@ const handleSubmit = async (e: React.FormEvent) => {
                 <div className="flex items-center space-x-4 mb-4">
                   <CheckCircle className="h-8 w-8 text-accent" />
                   <div>
-                    <h4 className="font-semibold text-foreground">Quick Response</h4>
+                    <h4 className="font-semibold text-foreground">
+                      Quick Response
+                    </h4>
                     <p className="text-muted-foreground text-sm">
                       We typically respond within 24 hours
                     </p>
@@ -283,15 +318,18 @@ const handleSubmit = async (e: React.FormEvent) => {
                 <div className="flex items-center space-x-4 mb-4">
                   <MapPin className="h-8 w-8 text-primary" />
                   <div>
-                    <h4 className="font-semibold text-foreground">Our Location</h4>
+                    <h4 className="font-semibold text-foreground">
+                      Our Location
+                    </h4>
                     <p className="text-muted-foreground text-sm">
                       Based in Ratlam, India. serving clients worldwide
                     </p>
                   </div>
                 </div>
                 <p className="text-sm text-muted-foreground">
-                  While we're based in India, we work with clients across the globe, 
-                  adapting to different time zones to ensure seamless collaboration.
+                  While we're based in India, we work with clients across the
+                  globe, adapting to different time zones to ensure seamless
+                  collaboration.
                 </p>
               </CardContent>
             </Card>
